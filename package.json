@@ -7,7 +7,7 @@
       "apps/*",
       "packages/*"
     ],
-    "nohoist": ["**/@nestjs", "**/@nestjs/**"]
+    "nohoist": ["**/@nestjs", "**/@nestjs/**", "express-jwt"]
   },
   "scripts": {
     "build": "turbo run build",
