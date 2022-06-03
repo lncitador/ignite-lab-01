@@ -1,13 +1,8 @@
-import { Button } from "ui";
-import { useHelloQuery } from "../store/services/api";
-
 export default function Web() {
-  const { data } = useHelloQuery();
 
   return (
     <div>
-      <h1>{data?.message}</h1>
-      <Button />
+      <a href="/api/auth/login" >Login</a>
     </div>
-  );
+  )
 }
