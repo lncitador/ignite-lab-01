@@ -1,15 +1,15 @@
-import { CanActivate, ExecutionContext } from '@nestjs/common';
+import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
+import { GqlExecutionContext } from '@nestjs/graphql';
 import { EnvironmentConfigService } from '@shared/infrastructure/environment/environment.service';
 import { expressjwt as jwt, GetVerificationKey } from 'express-jwt';
 import { expressJwtSecret } from 'jwks-rsa';
 import { promisify } from 'node:util';
 
+@Injectable()
 export class Auth0Guard implements CanActivate {
   constructor(private readonly environmentConfig: EnvironmentConfigService) {}
   public async canActivate(context: ExecutionContext): Promise<boolean> {
-    const httpContext = context.switchToHttp();
-    const request = httpContext.getRequest();
-    const response = httpContext.getResponse();
+    const { req, res } = GqlExecutionContext.create(context).getContext();
 
     const checkJwt = promisify(
       jwt({
@@ -17,7 +17,7 @@ export class Auth0Guard implements CanActivate {
           cache: true,
           rateLimit: true,
           jwksRequestsPerMinute: 5,
-          jwksUri: `${this.environmentConfig.getAuth0Domain}/.well-known/jwks.json`,
+          jwksUri: `${this.environmentConfig.getAuth0Domain()}.well-known/jwks.json`,
         }) as GetVerificationKey,
         audience: this.environmentConfig.getAuth0Audience(),
         issuer: this.environmentConfig.getAuth0Domain(),
@@ -26,7 +26,7 @@ export class Auth0Guard implements CanActivate {
     );
 
     try {
-      await checkJwt(request, response);
+      await checkJwt(req, res);
 
       return true;
     } catch {

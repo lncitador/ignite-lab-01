@@ -19,7 +19,6 @@ export class EnvironmentConfigService
   }
 
   public getDatabaseUrl(): string {
-    console.log(this.configService.get<string>('DATABASE_URL'));
     return this.configService.get<string>('DATABASE_URL');
   }
 
