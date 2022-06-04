@@ -20,7 +20,10 @@ export class ProductsPrismaRepository implements IProductsRepository {
   }
 
   public update(id: string, entity: ProductEntity): Promise<ProductEntity> {
-    throw new Error('Method not implemented.');
+    return this.prisma.product.update({
+      where: { id },
+      data: entity,
+    });
   }
 
   public delete(id: string): Promise<ProductEntity> {
