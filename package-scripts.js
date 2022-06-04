@@ -17,8 +17,8 @@ module.exports = {
       docker: "docker-compose up -d",
       ci: {
         web: `npx turbo prune --scope=web && cd out && yarn install --frozen-lockfile`,
-        purchases: `npx turbo prune --scope=purchases && cd out && yarn install --frozen-lockfile && nps prisma.purchases.generate`,
-        classroom: `npx turbo prune --scope=classroom && cd out && yarn install --frozen-lockfile && nps prisma.classroom.generate`,
+        purchases: `npx turbo prune --scope=purchases && cd out && yarn install --frozen-lockfile && nps prisma.ci.purchases.generate`,
+        classroom: `npx turbo prune --scope=classroom && cd out && yarn install --frozen-lockfile && nps prisma.ci.classroom.generate`,
       },
       prisma: `nps prisma.purchases.migrate.dev prisma.classroom.migrate.dev`,
     },
@@ -41,6 +41,22 @@ module.exports = {
       },
     },
     prisma: {
+      ci: {
+        purchases: {
+          generate: `cd ${purchasesPath} && npx prisma generate`,
+          studio: `cd ${purchasesPath} && npx prisma studio`,
+          migrate: {
+            dev: `cd ${purchasesPath} && npx prisma migrate dev`,
+          },
+        },
+        classroom: {
+          generate: `cd ${classroomPath} && npx prisma generate`,
+          studio: `cd ${classroomPath} && npx prisma studio`,
+          migrate: {
+            dev: `cd ${classroomPath} && npx prisma migrate dev`,
+          },
+        }
+      },
       purchases: {
         generate: `cd ${purchasesPath} && yarn prisma generate`,
         studio: `cd ${purchasesPath} && yarn prisma studio`,
