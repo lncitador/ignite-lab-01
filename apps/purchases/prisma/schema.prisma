@@ -8,5 +8,40 @@ datasource db {
 }
 
 model Customer {
-  id Int @id @default(autoincrement())
+  id        String     @id @default(dbgenerated("public.uuid_generate_v4()")) @db.Uuid
+  purchases Purchase[]
+  createdAt DateTime   @default(now()) @map("created_at")
+  updatedAt DateTime   @default(now()) @updatedAt @map("updated_at")
+
+  @@map("customers")
+}
+
+model Product {
+  id         String     @id @default(dbgenerated("public.uuid_generate_v4()")) @db.Uuid
+  title      String
+  slug       String     @unique
+  purchaseOn Purchase[]
+  createdAt  DateTime   @default(now()) @map("created_at")
+  updatedAt  DateTime   @default(now()) @updatedAt @map("updated_at")
+
+  @@map("products")
+}
+
+enum PurchaseStatus {
+  PENDING
+  APPROVED
+  FAILED
+}
+
+model Purchase {
+  id         String         @id @default(dbgenerated("public.uuid_generate_v4()")) @db.Uuid
+  status     PurchaseStatus @default(PENDING)
+  customerId String         @map("customer_id") @db.Uuid
+  customer   Customer       @relation(fields: [customerId], references: [id])
+  productId  String         @map("product_id") @db.Uuid
+  product    Product        @relation(fields: [productId], references: [id])
+  createdAt  DateTime       @default(now()) @map("created_at")
+  updatedAt  DateTime       @default(now()) @updatedAt @map("updated_at")
+
+  @@map("purchases")
 }
