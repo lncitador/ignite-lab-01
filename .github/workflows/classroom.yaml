@@ -8,11 +8,11 @@ on:
   push:
     branches: [master]
     paths:
-      - "apps/api/**"
+      - "apps/classroom/**"
   pull_request:
     branches: [master]
     paths:
-      - "apps/api/**"
+      - "apps/classroom/**"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -54,6 +54,6 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - run: yarn global add turbo
-      - run: npx nps prepare.ci.api
-      - run: npx nps build.ci.api
-      - run: npx nps test.ci.api
+      - run: npx nps prepare.ci.classroom
+      - run: npx nps build.ci.classroom
+      - run: npx nps test.ci.classroom

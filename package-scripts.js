@@ -17,17 +17,18 @@ module.exports = {
       docker: "docker-compose up -d",
       ci: {
         web: `npx turbo prune --scope=web && cd out && yarn install --frozen-lockfile`,
-        purchases: `npx turbo prune --scope=purchases && cd out && yarn install --frozen-lockfile && nps prisma.generate`,
+        purchases: `npx turbo prune --scope=purchases && cd out && yarn install --frozen-lockfile && nps prisma.purchases.generate`,
+        classroom: `npx turbo prune --scope=classroom && cd out && yarn install --frozen-lockfile && nps prisma.classroom.generate`,
       },
       prisma: `nps prisma.purchases.migrate.dev prisma.classroom.migrate.dev`,
     },
     test: {
-      default: `nps test.web test.purchases`,
+      default: `nps test.web test.purchases test.classroom`,
       web: `cd ${webPath} && yarn test:watch`,
       purchases: `cd ${purchasesPath} && yarn test:watch`,
       classroom: `cd ${classroomPath} && yarn test:watch`,
       ci: {
-        default: `nps test.ci.web test.ci.purchases`,
+        default: `nps test.ci.web test.ci.purchases test.ci.classroom`,
         web: `cd ${ciWebPath} && yarn test:ci`,
         purchases: `cd ${ciPurchasesPath} && yarn test:ci`,
         classroom: `cd ${ciClassroomPath} && yarn test:ci`,
