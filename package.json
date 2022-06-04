@@ -1,6 +1,6 @@
 {
-  "name": "turborepo-basic-shared",
-  "version": "0.0.0",
+  "name": "ignite-lab-turborepo",
+  "version": "0.1.0",
   "private": true,
   "workspaces": {
     "packages": [
