@@ -4,3 +4,7 @@ CREATE TABLE "students" (
 
     CONSTRAINT "students_pkey" PRIMARY KEY ("id")
 );
+
+-- Install uuid-ossp extension
+
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
