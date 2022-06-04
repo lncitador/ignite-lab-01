@@ -1,9 +1,9 @@
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
-import { Customer } from '../entities/customer.entity';
 import { CreateCustomerInput } from '../dto/create-customer.input';
 import { UpdateCustomerInput } from '../dto/update-customer.input';
 import { UseGuards } from '@nestjs/common';
 import { Auth0Guard } from '@shared/infrastructure/common/guards/auth0.guard';
+import { Customer } from '../model/customer';
 
 @UseGuards(Auth0Guard)
 @Resolver(() => Customer)
