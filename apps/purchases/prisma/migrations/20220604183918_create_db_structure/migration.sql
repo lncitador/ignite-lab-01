@@ -13,12 +13,12 @@ ALTER TABLE "customers" DROP CONSTRAINT "customers_pkey",
 ADD COLUMN     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 ADD COLUMN     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 DROP COLUMN "id",
-ADD COLUMN     "id" UUID NOT NULL DEFAULT public.uuid_generate_v4(),
+ADD COLUMN     "id" UUID NOT NULL DEFAULT uuid_generate_v4(),
 ADD CONSTRAINT "customers_pkey" PRIMARY KEY ("id");
 
 -- CreateTable
 CREATE TABLE "products" (
-    "id" UUID NOT NULL DEFAULT public.uuid_generate_v4(),
+    "id" UUID NOT NULL DEFAULT uuid_generate_v4(),
     "title" TEXT NOT NULL,
     "slug" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -29,7 +29,7 @@ CREATE TABLE "products" (
 
 -- CreateTable
 CREATE TABLE "purchases" (
-    "id" UUID NOT NULL DEFAULT public.uuid_generate_v4(),
+    "id" UUID NOT NULL DEFAULT uuid_generate_v4(),
     "status" "PurchaseStatus" NOT NULL DEFAULT E'PENDING',
     "customer_id" UUID NOT NULL,
     "product_id" UUID NOT NULL,
