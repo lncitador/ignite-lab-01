@@ -7,6 +7,10 @@ import { PrismaService } from '@shared/infrastructure/persistence/prisma/prisma.
 export class ProductsPrismaRepository implements IProductsRepository {
   constructor(private readonly prisma: PrismaService) {}
 
+  public findBySlug(slug: string): Promise<ProductEntity> {
+    return this.prisma.product.findUnique({ where: { slug } });
+  }
+
   public async findById(id: string): Promise<ProductEntity> {
     return this.prisma.product.findUnique({ where: { id } });
   }
@@ -26,7 +30,7 @@ export class ProductsPrismaRepository implements IProductsRepository {
     });
   }
 
-  public delete(id: string): Promise<ProductEntity> {
-    throw new Error('Method not implemented.');
+  public async delete(id: string): Promise<void> {
+    await this.prisma.product.delete({ where: { id } });
   }
 }

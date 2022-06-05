@@ -45,5 +45,5 @@ export abstract class Repository<T extends Entity> {
    * Delete an entity by id
    * @param id String
    */
-  public abstract delete(id: string): Promise<T>;
+  public abstract delete(id: string): Promise<void>;
 }

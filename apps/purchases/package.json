@@ -81,9 +81,13 @@
       "^.+\\.(t|j)s$": "ts-jest"
     },
     "collectCoverageFrom": [
-      "**/*.(t|j)s"
+      "src/**/usecases/*.ts"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "moduleNameMapper": {
+      "^@modules/(.*)$": "<rootDir>./modules/$1",
+      "^@shared/(.*)$": "<rootDir>./shared/$1"
+    }
   }
 }

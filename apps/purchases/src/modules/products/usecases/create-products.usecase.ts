@@ -13,8 +13,21 @@ export class CreateProductsUseCase
     @Inject(PROVIDER.PRODUCTS_REPOSITORY)
     private readonly productsRepository: IProductsRepository,
   ) {}
-  public execute({ title }: CreateProductInput): Promise<Product> {
-    const slug = title.toLowerCase().replace(/ /g, '-');
+
+  public async execute({ title }: CreateProductInput): Promise<Product> {
+    const slug = title
+      .toLowerCase()
+      .replace(/ /g, '-')
+      .replace(/\./g, '')
+      .replace(/\//g, '-');
+
+    const withSlugAlreadyExists = await this.productsRepository.findBySlug(
+      slug,
+    );
+
+    if (withSlugAlreadyExists) {
+      throw new Error('Product with this slug already exists');
+    }
 
     return this.productsRepository.create({
       title,

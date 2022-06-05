@@ -1,6 +1,6 @@
 import { Module, Provider } from '@nestjs/common';
 import { PROVIDER } from './domain/constants/provider';
-import { ProductsPrismaRepository } from './infra/repository/products.repository';
+import { ProductsPrismaRepository } from './infra/repository/prisma/products.repository';
 import { ProductsResolver } from './infra/resolver/products.resolver';
 import { CreateProductsUseCase } from './usecases/create-products.usecase';
 import { ListAllProductsUseCase } from './usecases/list-all-products.usecase';
