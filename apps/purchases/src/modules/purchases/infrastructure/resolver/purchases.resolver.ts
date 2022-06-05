@@ -1,4 +1,5 @@
 import { CreatePurchasesUseCase } from '@modules/purchases/usecases/create-purchases.usecase';
+import { ListAllPurchasesUseCase } from '@modules/purchases/usecases/list-all-purchases.usecase';
 import { UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { AuthUser } from '@shared/domain/interfaces/auth-user.interface';
@@ -9,12 +10,15 @@ import { Purchase } from '../model/purchases';
 
 @Resolver(() => Purchase)
 export class PurchasesResolver {
-  constructor(private readonly createPurchaseUseCase: CreatePurchasesUseCase) {}
+  constructor(
+    private readonly createPurchaseUseCase: CreatePurchasesUseCase,
+    private readonly listAllPurchasesUseCase: ListAllPurchasesUseCase,
+  ) {}
 
   @Query(() => [Purchase])
   @UseGuards(Auth0Guard)
   purchases() {
-    return [];
+    return this.listAllPurchasesUseCase.execute();
   }
 
   @Mutation(() => Purchase)

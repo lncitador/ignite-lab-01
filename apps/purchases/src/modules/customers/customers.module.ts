@@ -1,3 +1,4 @@
+import { FindAllAuthenticatedUserPurchasesUseCase } from '@modules/purchases/usecases/find-all-authenticated-user-purchases.usecase';
 import { Module, Provider } from '@nestjs/common';
 import { PROVIDER } from './domain/constants/provider';
 import { CustomersPrismaRepository } from './infrastructure/repository/prisma/customer.repository';
@@ -10,7 +11,11 @@ const PROVIDERS: Provider[] = [
   },
 ];
 @Module({
-  providers: [...PROVIDERS, CustomersResolver],
+  providers: [
+    ...PROVIDERS,
+    CustomersResolver,
+    FindAllAuthenticatedUserPurchasesUseCase,
+  ],
   exports: [...PROVIDERS],
 })
 export class CustomersModule {}

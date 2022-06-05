@@ -11,10 +11,10 @@ export class CustomersResolver {
   constructor(
     private readonly findAllAuthenticatedUserPurchasesUsecase: FindAllAuthenticatedUserPurchasesUseCase,
   ) {}
+
   @UseGuards(Auth0Guard)
   @Query(() => Customer)
   me(@CurrentUser() user: AuthUser) {
-    console.log(user);
-    return { sub: '' };
+    return this.findAllAuthenticatedUserPurchasesUsecase.execute(user.sub);
   }
 }
