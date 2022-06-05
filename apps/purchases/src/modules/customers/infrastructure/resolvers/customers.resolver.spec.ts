@@ -1,5 +1,5 @@
-import { FindAllAuthenticatedUserPurchasesUseCase } from '@modules/customers/usecases/find-all-authenticated-user-purchases.usecase';
 import { purchasesInmemoryFactory } from '@modules/purchases/infrastructure/repository/inmemory/purchases.factory';
+import { FindAllAuthenticatedUserPurchasesUseCase } from '@modules/purchases/usecases/find-all-authenticated-user-purchases.usecase';
 import { Test, TestingModule } from '@nestjs/testing';
 import { EnvironmentModule } from '@shared/infrastructure/environment/environment.module';
 import { customersInmemoryFactory } from '../repository/inmemory/customer.factory';
