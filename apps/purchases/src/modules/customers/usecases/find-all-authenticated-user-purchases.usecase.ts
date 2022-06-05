@@ -9,7 +9,7 @@ import { UseCase } from '@shared/domain/base/usecase';
 type AuthUserId = string;
 
 @Injectable()
-export class findAllAuthenticatedUserPurchases
+export class FindAllAuthenticatedUserPurchasesUseCase
   implements UseCase<AuthUserId, PurchaseEntity[]>
 {
   constructor(

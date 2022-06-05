@@ -1,9 +1,11 @@
 import { PurchaseEntity } from '@modules/purchases/domain/entity/purchase.entity';
 import { PurchaseStatus } from '@modules/purchases/domain/interfaces/purchases-status.interface';
 import { IPurchaseRepository } from '@modules/purchases/domain/repository/purchases.repository';
+import { Injectable } from '@nestjs/common';
 import { InMemoryRepository } from '@shared/infrastructure/persistence/inmemory/inmemory.service';
 import { randomUUID } from 'node:crypto';
 
+@Injectable()
 export class PurchasesInmemoryRepository
   extends InMemoryRepository<PurchaseEntity>
   implements IPurchaseRepository

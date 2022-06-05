@@ -38,6 +38,7 @@ type User {
 type Query {
   me: User!
   products: [Product!]!
+  purchases: [Purchase!]!
 }
 
 type Mutation {

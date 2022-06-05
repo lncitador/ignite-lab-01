@@ -5,7 +5,7 @@ import { IPurchaseRepository } from '@modules/purchases/domain/repository/purcha
 import { PurchasesInmemoryRepository } from '@modules/purchases/infrastructure/repository/inmemory/purchases.repository';
 import { AuthUser } from '@shared/domain/interfaces/auth-user.interface';
 import { randomUUID } from 'crypto';
-import { findAllAuthenticatedUserPurchases } from './find-all-purchases-from-customer.usecase';
+import { FindAllAuthenticatedUserPurchasesUseCase } from './find-all-authenticated-user-purchases.usecase';
 
 describe('FindAllPurchasesByCustomer', () => {
   const customerId = randomUUID();
@@ -17,7 +17,7 @@ describe('FindAllPurchasesByCustomer', () => {
 
   let purchaseRepository: IPurchaseRepository;
   let customerRepository: ICustomerRepository;
-  let sut: findAllAuthenticatedUserPurchases;
+  let sut: FindAllAuthenticatedUserPurchasesUseCase;
 
   beforeEach(async () => {
     purchaseRepository = new PurchasesInmemoryRepository([
@@ -40,7 +40,7 @@ describe('FindAllPurchasesByCustomer', () => {
       },
     ]);
 
-    sut = new findAllAuthenticatedUserPurchases(
+    sut = new FindAllAuthenticatedUserPurchasesUseCase(
       purchaseRepository,
       customerRepository,
     );

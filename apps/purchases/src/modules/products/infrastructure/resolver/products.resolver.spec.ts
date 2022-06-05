@@ -3,6 +3,7 @@ import { CreateProductsUseCase } from '@modules/products/usecases/create-product
 import { ListAllProductsUseCase } from '@modules/products/usecases/list-all-products.usecase';
 import { Test, TestingModule } from '@nestjs/testing';
 import { EnvironmentModule } from '@shared/infrastructure/environment/environment.module';
+import { productsInmemoryFactory } from '../repository/inmemory/products.factory';
 import { ProductsInmemoryRepository } from '../repository/inmemory/products.repository';
 import { ProductsResolver } from './products.resolver';
 
@@ -16,11 +17,7 @@ describe('ProductsResolver', () => {
         ProductsResolver,
         CreateProductsUseCase,
         ListAllProductsUseCase,
-        {
-          provide: PROVIDER.PRODUCTS_REPOSITORY,
-          useFactory: (): ProductsInmemoryRepository =>
-            new ProductsInmemoryRepository(),
-        },
+        productsInmemoryFactory.get(),
       ],
     }).compile();
 
