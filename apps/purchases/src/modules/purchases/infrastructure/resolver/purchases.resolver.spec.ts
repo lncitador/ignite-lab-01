@@ -5,6 +5,8 @@ import { PurchasesResolver } from './purchases.resolver';
 import { customersInmemoryFactory } from '@modules/customers/infrastructure/repository/inmemory/customer.factory';
 import { purchasesInmemoryFactory } from '../repository/inmemory/purchases.factory';
 import { ListAllPurchasesUseCase } from '@modules/purchases/usecases/list-all-purchases.usecase';
+import { GetProductByIdUseCase } from '@modules/products/usecases/get-product-by-id.usecase';
+import { productsInmemoryFactory } from '@modules/products/infrastructure/repository/inmemory/products.factory';
 
 describe('PurchaseResolver', () => {
   let resolver: PurchasesResolver;
@@ -16,8 +18,10 @@ describe('PurchaseResolver', () => {
         PurchasesResolver,
         CreatePurchasesUseCase,
         ListAllPurchasesUseCase,
+        GetProductByIdUseCase,
         purchasesInmemoryFactory.get(),
         customersInmemoryFactory.get(),
+        productsInmemoryFactory.get(),
       ],
     }).compile();
 

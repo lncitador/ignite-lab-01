@@ -24,27 +24,3 @@ export class ProductsResolver {
     return this.listAllProductUseCase.execute();
   }
 }
-
-/**
- * Other resolvers
- * 
- @Query(() => Product, { name: 'product' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
-    return this.productsService.findOne(id);
-  }
-
-  @Mutation(() => Product)
-  updateProduct(
-    @Args('updateProductInput') updateProductInput: UpdateProductInput,
-  ) {
-    return this.productsService.update(
-      updateProductInput.id,
-      updateProductInput,
-    );
-  }
-
-  @Mutation(() => Product)
-  removeProduct(@Args('id', { type: () => Int }) id: number) {
-    return this.productsService.remove(id);
-  }
- */
