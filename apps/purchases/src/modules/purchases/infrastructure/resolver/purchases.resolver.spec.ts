@@ -7,7 +7,7 @@ import { EnvironmentModule } from '@shared/infrastructure/environment/environmen
 import { PurchasesInmemoryRepository } from '../repository/inmemory/purchases.repository';
 import { PurchasesResolver } from './purchases.resolver';
 import { ICustomerRepository } from '@modules/customers/domain/repository/customer.repository';
-import { CustomersInmemoryRepository } from '@modules/customers/infra/repository/inmemory/customer.repository';
+import { CustomersInmemoryRepository } from '@modules/customers/infrastructure/repository/inmemory/customer.repository';
 
 describe('PurchaseResolver', () => {
   let resolver: PurchasesResolver;

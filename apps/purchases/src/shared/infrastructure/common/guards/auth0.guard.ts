@@ -1,7 +1,7 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { GqlExecutionContext } from '@nestjs/graphql';
 import { EnvironmentConfigService } from '@shared/infrastructure/environment/environment.service';
-import { expressjwt as jwt, GetVerificationKey } from 'express-jwt';
+import jwt from 'express-jwt';
 import { expressJwtSecret } from 'jwks-rsa';
 import { promisify } from 'node:util';
 
@@ -18,7 +18,7 @@ export class Auth0Guard implements CanActivate {
           rateLimit: true,
           jwksRequestsPerMinute: 5,
           jwksUri: `${this.environmentConfig.getAuth0Domain()}.well-known/jwks.json`,
-        }) as GetVerificationKey,
+        }),
         audience: this.environmentConfig.getAuth0Audience(),
         issuer: this.environmentConfig.getAuth0Domain(),
         algorithms: ['RS256'],

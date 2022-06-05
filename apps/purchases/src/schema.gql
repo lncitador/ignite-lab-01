@@ -30,7 +30,13 @@ enum PurchaseStatus {
   FAILED
 }
 
+type User {
+  authUserId: ID!
+  purchases: [Purchase!]!
+}
+
 type Query {
+  me: User!
   products: [Product!]!
 }
 
@@ -47,5 +53,4 @@ input CreateProductDto {
 
 input CreatePurchaseDto {
   productId: String!
-  customerId: String!
 }

@@ -1,4 +1,4 @@
-import { Product } from '@modules/products/infra/model/product.entity';
+import { Product } from '@modules/products/infrastructure/model/product.entity';
 import { PurchaseEntity } from '@modules/purchases/domain/entity/purchase.entity';
 import { PurchaseStatus } from '@modules/purchases/domain/interfaces/purchases-status.interface';
 import { Field, ID, ObjectType, registerEnumType } from '@nestjs/graphql';

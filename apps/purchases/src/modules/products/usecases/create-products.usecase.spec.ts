@@ -1,6 +1,6 @@
 import { randomUUID } from 'node:crypto';
 import { ProductEntity } from '../domain/entity/product.entity';
-import { ProductsInmemoryRepository } from '../infra/repository/inmemory/products.repository';
+import { ProductsInmemoryRepository } from '../infrastructure/repository/inmemory/products.repository';
 import { CreateProductsUseCase } from './create-products.usecase';
 
 describe('CreateProductsUseCase', () => {

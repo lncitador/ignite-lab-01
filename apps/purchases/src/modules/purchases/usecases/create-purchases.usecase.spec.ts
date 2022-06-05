@@ -1,6 +1,6 @@
 import { CustomerEntity } from '@modules/customers/domain/entity/customer.entity';
 import { ICustomerRepository } from '@modules/customers/domain/repository/customer.repository';
-import { CustomersInmemoryRepository } from '@modules/customers/infra/repository/inmemory/customer.repository';
+import { CustomersInmemoryRepository } from '@modules/customers/infrastructure/repository/inmemory/customer.repository';
 import { AuthUser } from '@shared/domain/interfaces/auth-user.interface';
 import { randomUUID } from 'node:crypto';
 import { PurchaseEntity } from '../domain/entity/purchase.entity';

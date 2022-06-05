@@ -1,7 +1,7 @@
 import { Module, Provider } from '@nestjs/common';
 import { PROVIDER } from './domain/constants/provider';
-import { CustomersPrismaRepository } from './infra/repository/prisma/customer.repository';
-import { CustomersResolver } from './infra/resolvers/customers.resolver';
+import { CustomersPrismaRepository } from './infrastructure/repository/prisma/customer.repository';
+import { CustomersResolver } from './infrastructure/resolvers/customers.resolver';
 
 const PROVIDERS: Provider[] = [
   {
