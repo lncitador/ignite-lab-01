@@ -4,36 +4,15 @@ import { UpdateCustomerInput } from '../dto/update-customer.input';
 import { UseGuards } from '@nestjs/common';
 import { Auth0Guard } from '@shared/infrastructure/common/guards/auth0.guard';
 import { Customer } from '../model/customer';
+import { CurrentUser } from '@shared/infrastructure/common/decorators/current-user.decorator';
+import { AuthUser } from '@shared/domain/interfaces/auth-user.interface';
 
 @UseGuards(Auth0Guard)
 @Resolver(() => Customer)
 export class CustomersResolver {
-  @Mutation(() => Customer)
-  createCustomer(
-    @Args('createCustomerInput') { exampleField }: CreateCustomerInput,
-  ) {
-    return { exampleField };
-  }
-
-  @Query(() => [Customer], { name: 'customers' })
-  findAll() {
-    return [];
-  }
-
-  @Query(() => Customer, { name: 'customer' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
-    return { exampleField: id };
-  }
-
-  @Mutation(() => Customer)
-  updateCustomer(
-    @Args('updateCustomerInput') updateCustomerInput: UpdateCustomerInput,
-  ) {
-    return { exampleField: updateCustomerInput.exampleField };
-  }
-
-  @Mutation(() => Customer)
-  removeCustomer(@Args('id', { type: () => Int }) id: number) {
-    return {};
+  @Query(() => Customer)
+  @UseGuards(Auth0Guard)
+  me(@CurrentUser() user: AuthUser) {
+    return { sub: '' };
   }
 }
