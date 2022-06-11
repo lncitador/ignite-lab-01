@@ -7,7 +7,7 @@ import { PrismaService } from '@shared/infrastructure/persistence/prisma/prisma.
 export class CustomersPrismaRepository implements ICustomerRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  public findByAuthUserId(authUserId: string): Promise<CustomerEntity> {
+  public async findByAuthUserId(authUserId: string): Promise<CustomerEntity> {
     return this.prisma.customer.findUnique({
       where: { authUserId },
     });
