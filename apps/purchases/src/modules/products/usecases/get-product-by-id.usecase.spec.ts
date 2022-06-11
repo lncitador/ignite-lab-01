@@ -28,9 +28,9 @@ describe('GetProductByIdUseCase', () => {
     sut = new GetProductByIdUseCase(productRepository);
   });
 
-  it('should return a product by id', () => {
-    const product = sut.execute(mock.id);
+  it('should return a product by id', async () => {
+    const product = await sut.execute(mock.id);
 
-    expect(product).toBeTruthy();
+    expect(product.slug).toBe('product-1');
   });
 });

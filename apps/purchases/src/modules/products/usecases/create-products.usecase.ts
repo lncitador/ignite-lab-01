@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { Product } from '@prisma/client';
 import { UseCase } from '@shared/domain/base/usecase';
 import { PROVIDER } from '../domain/constants/provider';
@@ -26,7 +26,7 @@ export class CreateProductsUseCase
     );
 
     if (withSlugAlreadyExists) {
-      throw new Error('Product with this slug already exists');
+      throw new BadRequestException('Product with this slug already exists');
     }
 
     return this.productsRepository.create({
